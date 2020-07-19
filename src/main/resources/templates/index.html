@@ -1,0 +1,45 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Spring MVC Application</title>
+</head>
+<body>
+<h1>All Technical Posts</h1>
+<!--
+the main tag indicates that the main content of the web page is within these tags.
+The post tag is a dummy container and does not signify anything to HTML or Thymeleaf.
+This is just to make the code more readable.
+-->
+<main id="posts">
+
+    <!--
+    "p: ${posts}" means that for each post that we are looping through in the ArrayList
+    (the posts data stored under the 'posts' key in the model),
+    let's store the post in the current loop iteration under a variable called p.
+    -->
+
+    <!--
+    ${posts} represents the array list of posts stored under the 'posts' key in the model returned by the controller.
+
+    -->
+
+    <post th:each="p : ${posts}">
+        <!--
+        The <span th:text="${p.date}"> instruction takes the date from the post object
+        (that is currently referenced by the variable p) and renders it on the page.
+        -->
+        <h2 th:text="${p.title}"></h2>
+
+        <i>Posted On: </i> <span th:text="${p.date}"></span>
+
+        <div>
+            <!--
+            Similarly, "<p th:text="${p.body}"></p>" renders the post body on the web page as text.
+            -->
+            <p th:text="${p.body}"></p>
+        </div>
+    </post>
+</main>
+</body>
+</html>
